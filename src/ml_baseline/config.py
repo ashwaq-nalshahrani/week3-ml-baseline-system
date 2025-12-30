@@ -1,5 +1,6 @@
 from pathlib import Path
 
+
 class Paths:
     def __init__(self, root: Path):
         self.root = root

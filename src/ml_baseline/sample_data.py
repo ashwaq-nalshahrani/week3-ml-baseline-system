@@ -5,8 +5,12 @@ from .config import Paths
 from .io import parquet_supported, write_tabular
 
 
-def make_sample_feature_table(*,root: Path | None = None,n_users: int = 50,seed: int = 42,) -> Path:
-   
+def make_sample_feature_table(
+    *,
+    root: Path | None = None,
+    n_users: int = 50,
+    seed: int = 42,
+) -> Path:
     paths = Paths.from_repo_root() if root is None else Paths(root=root)
     paths.data_processed_dir.mkdir(parents=True, exist_ok=True)
 
@@ -23,7 +27,6 @@ def make_sample_feature_table(*,root: Path | None = None,n_users: int = 50,seed:
     df["total_amount"] = (df["n_orders"] * df["avg_amount"]).round(2)
     df["is_high_value"] = (df["total_amount"] >= 80).astype(int)
 
-    
     csv_path = paths.data_processed_dir / "features.csv"
     write_tabular(df, csv_path)
     if parquet_supported():

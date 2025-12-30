@@ -1,12 +1,15 @@
 import pandas as pd
 from pathlib import Path
 
+
 def parquet_supported() -> bool:
     try:
         import pyarrow  # noqa
+
         return True
     except ImportError:
         return False
+
 
 def write_tabular(df: pd.DataFrame, path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)

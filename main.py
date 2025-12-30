@@ -1,5 +1,12 @@
+from .cli import app
+
+
 def main():
-    print("Hello from week3-ml-baseline-system!")
+    """
+    نقطة الدخول الرئيسية للتطبيق.
+    تقوم باستدعاء تطبيق Typer المعرف في ملف cli.py
+    """
+    app()
 
 
 if __name__ == "__main__":
